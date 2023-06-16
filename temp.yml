@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 468699184395.dkr.ecr.ap-northeast-2.amazonaws.com
+  build:
+    commands:
+      - docker build -t game-server .
+      - docker tag game-server:latest 468699184395.dkr.ecr.ap-northeast-2.amazonaws.com/game-server:latest
+  post_build:
+    commands:
+      - docker push 468699184395.dkr.ecr.ap-northeast-2.amazonaws.com/game-server:latest
+      - aws ecs update-service --cluster main --service game-server --region ap-northeast-2 --task-definition service
