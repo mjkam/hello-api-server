@@ -73,3 +73,9 @@ jobs:
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_MESSAGE: 'Deploy Finish'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
