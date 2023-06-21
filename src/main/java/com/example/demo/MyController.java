@@ -13,6 +13,6 @@ public class MyController {
 
     @GetMapping("/test")
     public String test() {
-        return "v1: " + UUID.randomUUID().toString();
+        return "v2: " + UUID.randomUUID().toString();
     }
 }
