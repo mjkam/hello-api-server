@@ -1,5 +1,6 @@
 FROM openjdk:11
 
+#COPY ./build/libs/ /java
 COPY . /java
 
 WORKDIR /java
