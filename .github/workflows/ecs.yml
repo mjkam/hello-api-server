@@ -69,7 +69,7 @@ jobs:
       - name: Update or create ECS service
         run: |
           aws ecs update-service --cluster DevCluster --service ${{ env.ECS_SERVICE }} --force-new-deployment || \
-          aws ecs create-service --cluster DevCluster --service-name ${{ env.ECS_SERVICE }} --task-definition ${{ steps.task-def.outputs.task-definition }} --desired-count 1
+          aws ecs create-service --cluster DevCluster --service-name ${{ env.ECS_SERVICE }} --task-definition "${{ steps.task-def.outputs.task-definition }}" --desired-count 1
 
 #      - name: Deploy Amazon ECS task definition
 #        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
