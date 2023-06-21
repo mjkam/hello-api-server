@@ -68,6 +68,7 @@ jobs:
 
       - name: Update or create ECS service
         run: |
+          aws --version
           cat ${{ steps.task-def.outputs.task-definition }}
           aws ecs update-service --cluster DevCluster --service ${{ env.ECS_SERVICE }} --force-new-deployment || \
           aws ecs create-service --cluster DevCluster --service-name ${{ env.ECS_SERVICE }} --cli-input-json file://${{ steps.task-def.outputs.task-definition }} --desired-count 1
